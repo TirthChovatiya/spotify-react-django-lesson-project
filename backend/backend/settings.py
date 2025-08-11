@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +31,7 @@ SECRET_KEY = getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = getenv('DEBUG') == 'True'
 
-ALLOWED_HOSTS = getenv('ALLOWED_HOSTS').split(', ')
+# ALLOWED_HOSTS = getenv('ALLOWED_HOSTS').split(', ')
 
 
 # Application definition
@@ -61,7 +64,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = getenv('CORS_ALLOWED_ORIGINS').split(', ')
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -164,3 +167,6 @@ if getenv('STORAGE') == 'AWS_S3':
 else:
     MEDIA_URL = 'media/'
     MEDIA_ROOT = BASE_DIR / 'media'
+    
+    
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
